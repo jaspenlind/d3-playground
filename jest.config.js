@@ -5,12 +5,11 @@ module.exports = {
     "^.+\\.(css|scss)$": "identity-obj-proxy"
   },
   modulePathIgnorePatterns: ["<rootDir>/dist/"],
-  preset: "ts-jest",
+  // preset: "ts-jest",
   roots: ["<rootDir>/src", "<rootDir>/test"],
-  setupFilesAfterEnv: ["jest-extended"],
   testRegex: "(/__tests__/.*|(\\.|/)(test|spec))\\.tsx?$",
-  transform: {
-    "^.+\\.tsx?$": "ts-jest"
-  },
+  // transform: {
+  //   "^.+\\.tsx?$": "ts-jest"
+  // },
   verbose: true
 };

@@ -1,22 +1,25 @@
 {
   "compilerOptions": {
-    "module": "commonjs",
+    "target": "es5",
+    "lib": [
+      "dom",
+      "dom.iterable",
+      "esnext"
+    ],
+    "allowJs": true,
+    "skipLibCheck": true,
     "esModuleInterop": true,
-    "experimentalDecorators": true,
     "allowSyntheticDefaultImports": true,
-    "target": "es2019",
-    "noImplicitAny": true,
-    "importHelpers": true,
-    "moduleResolution": "node",
-    "sourceMap": true,
-    "outDir": "dist",
-    "baseUrl": ".",
-    "resolveJsonModule": true,
     "strict": true,
-    "declaration": true,
-    "paths": {
-      "*": ["src/types/*", "*"]
-    }
+    "forceConsistentCasingInFileNames": true,
+    "module": "esnext",
+    "moduleResolution": "node",
+    "resolveJsonModule": true,
+    "isolatedModules": true,
+    "noEmit": true,
+    "jsx": "react"
   },
-  "include": ["src/**/*", "test/**/*", "setup.ts"]
+  "include": [
+    "src"
+  ]
 }
