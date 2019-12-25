@@ -1,34 +1,27 @@
 {
-  "name": "node-ts-starter-template",
-  "version": "1.1.0",
-  "description": "Node starter template with TypeScript",
+  "name": "d3-playground",
+  "version": "1.0.0",
+  "description": "Playground area for d3js ",
   "main": "dist/src/index.js",
   "types": "dist/src/index.d.ts",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/jaspenlind/node-ts-starter-template.git"
+    "url": "https://github.com/jaspenlind/d3-playground.git"
   },
   "keywords": [
-    "starter",
-    "node",
+    "d3",
+    "playground",
+    "react",
     "typescript",
-    "typedoc",
-    "ts-jest",
-    "eslint",
-    "hooks",
-    "commitlint",
-    "husky",
-    "prettier",
-    "coveralls",
-    "vscode",
-    "travis"
+    "svg",
+    "fractals"
   ],
   "author": "jaspenlind",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/jaspenlind/node-ts-starter-template/issues"
+    "url": "https://github.com/jaspenlind/d3-playground/issues"
   },
-  "homepage": "https://github.com/jaspenlind/node-ts-starter-template#readme",
+  "homepage": "https://github.com/jaspenlind/d3-playground#readme",
   "files": [
     "dist/src/*"
   ],

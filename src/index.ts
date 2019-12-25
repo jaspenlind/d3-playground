@@ -1,3 +1,1 @@
-import { name } from "../package.json";
-
-export default name;
+export default "Hello World!";
