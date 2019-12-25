@@ -23,6 +23,8 @@
   },
   "homepage": "https://github.com/jaspenlind/d3-playground#readme",
   "dependencies": {
+    "@material-ui/core": "^4.8.1",
+    "@material-ui/icons": "^4.5.1",
     "@testing-library/jest-dom": "^4.2.4",
     "@testing-library/react": "^9.3.2",
     "@testing-library/user-event": "^7.1.2",
@@ -30,6 +32,7 @@
     "@types/node": "^12.0.0",
     "@types/react": "^16.9.0",
     "@types/react-dom": "^16.9.0",
+    "d3": "^5.14.2",
     "react": "^16.12.0",
     "react-dom": "^16.12.0",
     "react-scripts": "3.3.0",
@@ -63,6 +66,8 @@
   },
   "devDependencies": {
     "@commitlint/config-conventional": "^8.2.0",
+    "@testing-library/dom": "^6.11.0",
+    "@types/d3": "^5.7.2",
     "@typescript-eslint/eslint-plugin": "^2.13.0",
     "@typescript-eslint/parser": "^2.13.0",
     "babel-eslint": "^10.0.3",
