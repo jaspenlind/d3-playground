@@ -30,7 +30,7 @@ const App: React.FC = () => {
           <Gosper width={960} height={500} />
         </div>
         <div>
-          <h2>Lsystem fractals with p5</h2>
+          <h2>Fractal plant with p5</h2>
           <Iframe url="p5/lsystem.html" width="960px" height="500px" />
         </div>
         <div>
