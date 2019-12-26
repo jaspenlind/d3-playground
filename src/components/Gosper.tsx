@@ -58,7 +58,8 @@ export const Gosper = (props: any) => {
     vis.attr("transform", "translate(660,360) rotate(120)");
 
     const gosperFractal = create(gosperLike);
-    const data = hexagon.coords(gosperFractal);
+    const data = hexagon.pathTranslator(hexagon.hexagonPath, gosperFractal);
+    //const data = hexagon.coords(gosperFractal);
 
     const getFeatures = () => {
       const results = [];

@@ -1,20 +1,44 @@
 import { geoTransform, geoPath } from "d3-geo";
 import { Direction, Fractal, GeoPath, Path, ShapeData } from "../../types";
 import { direction, path } from "..";
+import { add, backward, forward, left, right, down, up } from "../direction";
+const rightDown = add(right, down);
+const rightForward = add(right, forward);
+const upForward = add(up, forward);
+const leftUp = add(left, up);
+const backwardLeft = add(backward, left);
+const backwardDown = add(backward, down);
+
+export const hexagonPath = path(rightDown, rightForward, upForward, leftUp, backwardLeft, backwardDown);
+
+export const pathTranslator = (shapePath: Path, data: Fractal): Path => {
+  const paths = [direction.zero];
+
+  let index = 0;
+
+  const temp = [...data].map(char => {
+    if (char === "+") {
+      index = (index + 1) % shapePath.directions.length;
+    } else if (char === "-") {
+      index -= 1;
+      if (index === -1) {
+        index = shapePath.directions.length - 1;
+      }
+    } else if (char === "F") {
+      const dir = shapePath.directions[index];
+      const current = paths[paths.length - 1];
+      paths.push(add(current, dir));
+    }
+  });
+
+  return path(...paths);
+};
 
 const coords = (data: Fractal): Path => {
-  const directions = path(
-    { x: +1, y: -1 },
-    { x: +1, z: -1 },
-    { y: 1, z: -1 },
-    { x: -1, y: +1 },
-    { x: -1, z: +1 },
-    { y: -1, z: +1 }
-  );
-
   /* start the walk from the origin cell, facing east
    */
 
+  const directions = hexagonPath;
   const paths = [direction.zero];
 
   let index = 0;
@@ -31,13 +55,10 @@ const coords = (data: Fractal): Path => {
     } else if (char === "F") {
       const dir = directions.directions[index];
       const current = paths[paths.length - 1];
-      paths.push({
-        x: current.x + dir.x,
-        y: current.y + dir.y,
-        z: current.z + dir.z
-      });
+      paths.push(add(current, dir));
     }
   }
+
   return path(...paths);
 };
 
@@ -88,5 +109,7 @@ const project = (): GeoPath => {
 export const hexagon = {
   create,
   coords,
-  project
+  project,
+  pathTranslator,
+  hexagonPath
 };
