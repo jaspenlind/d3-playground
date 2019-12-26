@@ -1,4 +1,4 @@
-import { LSystem } from "../types";
+import { LSystem } from "../../../types";
 
 /**
  * Based on https://gist.github.com/nitaku/6521802

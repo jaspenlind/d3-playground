@@ -1,4 +1,4 @@
 export interface Shape {
-  coordinates: [][][];
-  type: string;
+  type: "Polygon";
+  coordinates: number[][][];
 }

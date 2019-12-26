@@ -1,4 +1,4 @@
-import { LSystem } from "../types";
+import { LSystem } from "../../../types";
 
 /**
  ```
