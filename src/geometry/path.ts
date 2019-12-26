@@ -1,10 +1,19 @@
-import { Direction, Path } from "../types";
+import { Direction } from "../types";
 import { direction } from ".";
 
-const create = (...directions: Partial<Direction>[]): Path => {
-  return directions.map(direction.create) as Path;
-};
+export const path = (...directions: Partial<Direction>[]) => {
+  const dirs = directions.map(direction.create);
+  const body = {
+    directions: dirs,
+    grow: (dir: Direction, ...rest: Direction[]) => {
+      if (dirs.length === 0) {
+        return body;
+      }
+      const last = dirs.slice(-1)[0];
+      dirs.push(direction.add(last, dir, ...rest));
+      return body;
+    }
+  };
 
-export const path = {
-  create
+  return body;
 };

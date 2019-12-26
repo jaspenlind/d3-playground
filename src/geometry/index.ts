@@ -1,2 +1,2 @@
-export * from "./direction";
-export * from "./path";
+export { direction } from "./direction";
+export { path } from "./path";
