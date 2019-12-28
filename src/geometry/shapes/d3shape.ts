@@ -5,7 +5,7 @@ export const d3shape = (direction: Direction): D3ShapeData => {
    */
   const x = 2 * (direction.x + direction.z / 2.0);
   const y = 2 * direction.z;
-  return {
+  const feature: D3ShapeData = {
     type: "Feature",
     geometry: {
       type: "Polygon",
@@ -22,4 +22,6 @@ export const d3shape = (direction: Direction): D3ShapeData => {
       ]
     }
   };
+
+  return feature;
 };

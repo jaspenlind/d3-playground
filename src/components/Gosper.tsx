@@ -1,7 +1,7 @@
 import React, { useEffect, useRef } from "react";
 import * as d3 from "d3";
 import { createStyles, makeStyles } from "@material-ui/core/styles";
-import { D3ShapeData, GeoPath, SVGSelection, SVGTransition } from "../types";
+import { D3ShapeData, GeoPath, SVGSelection, SVGTransition, Path, Direction } from "../types";
 import { gosper } from "../geometry/fractals/algorithms";
 import { d3shape, hexagon } from "../geometry/shapes";
 import { translate } from "../geometry/fractals";
@@ -50,7 +50,6 @@ const redraw = (vis: SVGSelection, pathGenerator: GeoPath, dataToDraw: D3ShapeDa
 
 export const Gosper = (props: any) => {
   const ref = useRef<SVGElement>(null);
-
   useStyles();
   useEffect(() => {
     const vis: SVGSelection = d3.select<SVGElement, {}>(ref.current as SVGElement);
