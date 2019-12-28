@@ -1,4 +1,6 @@
-import { LSystem } from "../../../types";
+import { LSystemAlgorithm } from "../../../types";
+
+import LSystem from "lindenmayer";
 
 /**
  ```
@@ -15,11 +17,15 @@ n=4:       A B A A B     A B A   ... into an A one generation later, starting to
 
  source: https://en.wikipedia.org/wiki/L-system
  */
-export const algae: LSystem = {
-  variables: ["A", "B"],
-  axiom: "A",
-  rules: new Map<string, string>([
-    ["A", "AB"],
-    ["B", "A"]
-  ])
+
+export const algae: LSystemAlgorithm = {
+  definition: new LSystem({
+    axiom: "A",
+    productions: {
+      A: "AB",
+      B: "A"
+    }
+  }),
+  steps: 3,
+  angle: 0
 };

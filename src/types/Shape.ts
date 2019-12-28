@@ -1,4 +1,6 @@
+import { D3ShapeData, GeoPath, Path } from ".";
+
 export interface Shape {
-  type: "Polygon";
-  coordinates: number[][][];
+  path: Path;
+  projection: GeoPath;
 }

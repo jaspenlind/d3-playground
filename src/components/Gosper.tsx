@@ -1,10 +1,10 @@
 import React, { useEffect, useRef } from "react";
 import * as d3 from "d3";
 import { createStyles, makeStyles } from "@material-ui/core/styles";
-import { GeoPath, ShapeData, SVGSelection, SVGTransition } from "../types";
-import { create } from "../geometry/fractals";
-import { gosperLike } from "../geometry/fractals/algorithms";
-import { hexagon } from "../geometry/shapes";
+import { D3ShapeData, GeoPath, SVGSelection, SVGTransition } from "../types";
+import { gosper } from "../geometry/fractals/algorithms";
+import { d3shape, hexagon } from "../geometry/shapes";
+import { translate } from "../geometry/fractals";
 
 const useStyles = makeStyles(() =>
   createStyles({
@@ -26,7 +26,7 @@ const color = (i: number): d3.HCLColor => {
   return d3.hcl(((i7 % 7) * 360) / 7, 30, colors[i49]);
 };
 
-const redraw = (vis: SVGSelection, pathGenerator: GeoPath, dataToDraw: ShapeData[], size: number): SVGTransition => {
+const redraw = (vis: SVGSelection, pathGenerator: GeoPath, dataToDraw: D3ShapeData[], size: number): SVGTransition => {
   return vis
     .selectAll(".hex")
     .data(dataToDraw.slice(0, size))
@@ -57,30 +57,14 @@ export const Gosper = (props: any) => {
 
     vis.attr("transform", "translate(660,360) rotate(120)");
 
-    const gosperFractal = create(gosperLike);
-    const data = hexagon.pathTranslator(hexagon.hexagonPath, gosperFractal);
-    //const data = hexagon.coords(gosperFractal);
+    const data = translate(hexagon.path, gosper);
 
-    const getFeatures = () => {
-      const results = [];
-      for (let i = 0; i < data.directions.length; i += 1) {
-        const d = data.directions[i];
-        results.push(hexagon.create(d));
-      }
-      return results;
-    };
-
-    const hexes = {
-      type: "FeatureCollection",
-      features: getFeatures()
-    };
-
-    const projection = hexagon.project();
+    const shapes = data.directions.map(d3shape);
 
     /* start the animation
      */
 
-    redraw(vis, projection, hexes.features, 1);
+    redraw(vis, hexagon.projection, shapes, 1);
 
     vis
       .append("circle")

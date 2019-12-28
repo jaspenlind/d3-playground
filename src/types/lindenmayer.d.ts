@@ -54,7 +54,7 @@ declare module "lindenmayer" {
 
     getRaw(...args: any[]): void;
 
-    getString(...args: any[]): void;
+    getString(): string;
 
     iterate(iterations?: number): void;
 

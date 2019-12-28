@@ -1,9 +1,9 @@
 import React, { useEffect, useRef } from "react";
 import * as d3 from "d3";
 import { createStyles, makeStyles } from "@material-ui/core/styles";
-import { GeoPath, ShapeData, SVGSelection } from "../types";
+import { GeoPath, D3ShapeData, SVGSelection } from "../types";
 
-import { hexagon } from "../geometry/shapes";
+import { d3shape, hexagon } from "../geometry/shapes";
 import { direction, path } from "../geometry";
 
 const useStyles = makeStyles(() =>
@@ -15,7 +15,7 @@ const useStyles = makeStyles(() =>
   })
 );
 
-const draw = (selection: SVGSelection, projection: GeoPath, data: ShapeData[]) => {
+const draw = (selection: SVGSelection, projection: GeoPath, data: D3ShapeData[]) => {
   const chunk = data.splice(0, 1);
 
   selection
@@ -38,7 +38,7 @@ export const Staff = (props: any) => {
 
     vis.attr("transform", "translate(660,360) rotate(120)");
 
-    const projection = hexagon.project();
+    const projection = hexagon.projection;
 
     const p = path(direction.zero);
 
@@ -50,7 +50,7 @@ export const Staff = (props: any) => {
       p.grow(direction.forward, direction.right);
     }
 
-    const tempData = p.directions.map(hexagon.create);
+    const tempData = p.directions.map(d3shape);
 
     draw(vis, projection, tempData);
 

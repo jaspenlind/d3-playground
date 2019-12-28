@@ -1,7 +1,7 @@
-import { Direction } from "../types";
+import { Direction, Path } from "../types";
 import { direction } from ".";
 
-export const path = (...directions: Partial<Direction>[]) => {
+export const path = (...directions: Partial<Direction>[]): Path => {
   const dirs = directions.map(direction.create);
   const body = {
     directions: dirs,
