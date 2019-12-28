@@ -1,41 +1,85 @@
-export = lindenmayer;
+declare module "lindenmayer" {
+  export type ObjectLiteralOf<TKey, TValue> = { [key: TKey]: TValue } | ArrayLike<TValue>;
+  export type Final = (info: FinalInfo, ...args: any[]) => void;
+  export interface FinalInfo {
+    index: number;
+    part: string;
+  }
 
-declare class lindenmayer {
-  constructor(...args: any[]);
+  export interface LSystemOptions {
+    axiom: string;
+    productions: ObjectLiteralOf<string, string>;
+    finals: ObjectLiteralOf<string, Final>;
+    branchSymbols: string;
+    ignoredSymbols: string;
+    allowClassicSyntax: boolean;
+    classicParametricSyntax: boolean;
+    forceObjects: boolean;
+    debug: boolean;
+  }
 
-  applyProductions(...args: any[]): void;
+  export interface Successor {
+    weight?: number;
+  }
 
-  clearProductions(...args: any[]): void;
+  export interface Production {
+    from: string;
+    to: string;
+  }
+  export interface MatchOptions {
+    direction: MatchDirection;
+    match: string;
+    index: number;
+    branchSymbols: string[];
+    ignoreSymbols: string[];
+  }
 
-  final(...args: any[]): void;
+  export interface Match {
+    result: boolean;
+    matchIndices: number[];
+  }
 
-  getProductionResult(...args: any[]): void;
+  export type MatchDirection = "right" | "left";
 
-  getRaw(...args: any[]): void;
+  export class LSystem {
+    constructor(options: Partial<LSystemOptions>);
+    iterations: number;
+    applyProductions(): void;
 
-  getString(...args: any[]): void;
+    clearProductions(): void;
 
-  iterate(...args: any[]): void;
+    final(...args: any[]): void;
 
-  match(...args: any[]): void;
+    getProductionResult(...args: any[]): void;
 
-  setAxiom(...args: any[]): void;
+    getRaw(...args: any[]): void;
 
-  setFinal(...args: any[]): void;
+    getString(...args: any[]): void;
 
-  setFinals(...args: any[]): void;
+    iterate(iterations?: number): void;
 
-  setProduction(...args: any[]): void;
+    match(options: Partial<MatchOptions>): Match;
 
-  setProductions(...args: any[]): void;
+    setAxiom(axiom: string): void;
 
-  static getStringResult: any;
+    setFinal(final: Final): void;
 
-  static testClassicParametricSyntax(axiom: any): any;
+    setFinals(...finals: Final[]): void;
 
-  static transformClassicCSProduction(p: any): any;
+    setProduction(...args: any[]): void;
 
-  static transformClassicParametricAxiom(axiom: any): void;
+    setProductions(...args: any[]): void;
 
-  static transformClassicStochasticProductions(productions: any): any;
+    static getStringResult: any;
+
+    static testClassicParametricSyntax(axiom: any): any;
+
+    static transformClassicCSProduction(p: any): any;
+
+    static transformClassicParametricAxiom(axiom: any): void;
+
+    static transformClassicStochasticProductions(productions: any): any;
+  }
+
+  export default LSystem;
 }

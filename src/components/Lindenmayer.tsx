@@ -1,6 +1,7 @@
 import React, { useRef, useEffect } from "react";
+import LSystem from "lindenmayer";
 // eslint-disable-next-line @typescript-eslint/no-var-requires
-const LSystem = require("lindenmayer");
+//const LSystem = require("lindenmayer");
 
 export const Lidenmayer = (props: any) => {
   const ref = useRef<any>(null);
