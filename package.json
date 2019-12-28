@@ -33,6 +33,7 @@
     "@types/react": "^16.9.0",
     "@types/react-dom": "^16.9.0",
     "d3": "^5.14.2",
+    "lindenmayer": "^1.5.3",
     "react": "^16.12.0",
     "react-dom": "^16.12.0",
     "react-iframe": "^1.8.0",

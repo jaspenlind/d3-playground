@@ -7,7 +7,7 @@ import tslogo from "./tslogo.svg";
 import "./App.css";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
-import { Gosper, Staff } from "./components";
+import { Gosper, Staff, Lidenmayer } from "./components";
 
 const App: React.FC = () => {
   const settings = {
@@ -25,6 +25,10 @@ const App: React.FC = () => {
         <img src={logo} className="App-logo" alt="logo" />
       </header>
       <Slider {...settings}>
+        <div>
+          <h2>Lindenmayer</h2>
+          <Lidenmayer />
+        </div>
         <div>
           <h2>Gosper curve</h2>
           <Gosper width={960} height={500} />

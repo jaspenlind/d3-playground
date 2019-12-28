@@ -46,8 +46,16 @@ function drawForward(drawingState, params) {
   drawingState.state.position.x = newX;
   drawingState.state.position.y = newY;
 }
-
-const tree = {
+/**export const gosperLike: LSystem = {
+  variables: ["A", "B", "F"],
+  axiom: "A",
+  steps: 3,
+  rules: new Map<string, string>([
+    ["A", "A+BF++BF-FA--FAFA-BF+"],
+    ["B", "-FA+BFBF++BF+FA--FA-B"]
+  ])
+}; */
+const fractalPlant = {
   params: {
     angle: 25,
     length: 2
@@ -57,20 +65,60 @@ const tree = {
     X: "F[-X][X]F[-X]+FX",
     F: "FF"
   },
-  commands: {
-    F: drawForward,
-    "-"(drawingState, params) {
-      drawingState.state.direction -= params.angle;
-    },
-    "+"(drawingState, params) {
-      drawingState.state.direction += params.angle;
-    },
-    "["(drawingState, params) {
-      drawingState.push();
-    },
-    "]"(drawingState, params) {
-      drawingState.pop();
-    }
+  steps: 6
+};
+
+const serpinskiTriangle = {
+  params: {
+    angle: 120,
+    length: 30
+  },
+  axiom: "F[-G]-[G]",
+  rules: {
+    F: "F[−G]+F+G[−F]",
+    G: "GG"
+  },
+  steps: 8
+};
+binaryTree = {
+  params: {
+    angle: 25,
+    length: 30
+  },
+  axiom: "0",
+  rules: {
+    "1": "11",
+    "0": "1[0]0"
+  },
+  steps: 7
+};
+
+cantorSet = {
+  params: {
+    angle: 90,
+    length: 100
+  },
+  axiom: "A",
+  rules: {
+    A: "ABA",
+    B: "BBB"
+  },
+  steps: 8
+};
+
+commands = {
+  F: drawForward,
+  "-"(drawingState, params) {
+    drawingState.state.direction -= params.angle;
+  },
+  "+"(drawingState, params) {
+    drawingState.state.direction += params.angle;
+  },
+  "["(drawingState, params) {
+    drawingState.push();
+  },
+  "]"(drawingState, params) {
+    drawingState.pop();
   }
 };
 
@@ -101,8 +149,7 @@ function setup() {
   noLoop();
 }
 
-numIters = 6;
-system = tree;
+system = fractalPlant;
 
 function drawSystem(system, fragmentIterator, drawingState) {
   const drawFrame = () => {
@@ -112,7 +159,7 @@ function drawSystem(system, fragmentIterator, drawingState) {
     }
     const fragment = iter.value;
     for (const character of fragment) {
-      const drawingFunction = system.commands[character];
+      const drawingFunction = commands[character];
       if (drawingFunction) {
         drawingFunction(drawingState, system.params);
       }
@@ -126,7 +173,7 @@ async function mouseClicked() {
   const origin = new Point(mouseX, mouseY);
   let systemState = system.axiom;
   console.log(systemState);
-  for (let i = 1; i < numIters - 1; i++) {
+  for (let i = 1; i < system.steps - 1; i++) {
     systemState = renderAGeneration(system, systemState);
     console.log(systemState);
   }

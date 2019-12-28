@@ -7370,6 +7370,11 @@ levn@^0.3.0, levn@~0.3.0:
     prelude-ls "~1.1.2"
     type-check "~0.3.2"
 
+lindenmayer@^1.5.3:
+  version "1.5.3"
+  resolved "https://registry.yarnpkg.com/lindenmayer/-/lindenmayer-1.5.3.tgz#3f57d52f32cb0dc066bc4163303eb7e6c2304b89"
+  integrity sha512-DFpAJaUs4G3rA1GE+/mNLT03jCQZQt2SivEm8ITA7jQzjhFuejYP2+19WA3xnBAo3pfHBrbWtKSexST1ZcJQyQ==
+
 lines-and-columns@^1.1.6:
   version "1.1.6"
   resolved "https://registry.yarnpkg.com/lines-and-columns/-/lines-and-columns-1.1.6.tgz#1c00c743b433cd0a4e80758f7b64a57440d9ff00"
