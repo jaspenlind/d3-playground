@@ -1,9 +1,9 @@
 import React, { useEffect, useRef } from "react";
 import * as d3 from "d3";
 import { createStyles, makeStyles } from "@material-ui/core/styles";
-import { GeoPath, D3ShapeData, SVGSelection } from "../types";
-
-import { d3shape, hexagon } from "../geometry/shapes";
+import { GeoPath, D3ShapeData, SVGSelection } from "../d3/types";
+import { hexagon } from "../geometry/shapes";
+import { d3shape } from "../d3";
 import { direction, path } from "../geometry";
 
 const useStyles = makeStyles(() =>

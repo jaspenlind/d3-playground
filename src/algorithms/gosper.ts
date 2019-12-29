@@ -1,5 +1,5 @@
 import LSystem from "lindenmayer";
-import { LSystemAlgorithm } from "../../../types";
+import { LSystemAlgorithm } from "./types";
 
 export const gosper: LSystemAlgorithm = {
   definition: new LSystem({

@@ -1,6 +1,5 @@
-import { LSystemAlgorithm } from "../../../types";
-
 import LSystem from "lindenmayer";
+import { LSystemAlgorithm } from "./types";
 
 /**
  ```

@@ -1,5 +1,6 @@
-import { LSystemAlgorithm, Path } from "../../types";
-import { direction, path } from "..";
+import { Path } from "../geometry/types";
+import { LSystemAlgorithm } from "../algorithms/types";
+import { direction, path } from "../geometry";
 
 export const translate = (shape: Path, algorithm: LSystemAlgorithm): Path => {
   const { definition, steps } = algorithm;

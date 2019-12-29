@@ -1,4 +1,4 @@
-import { Direction, Path } from "../types";
+import { Direction, Path } from "./types";
 import { direction } from ".";
 
 export const path = (...directions: Partial<Direction>[]): Path => {

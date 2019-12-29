@@ -1,4 +1,4 @@
-import { Direction } from "../types";
+import { Direction } from "./types";
 
 export const create = (coords: Partial<Direction>): Direction => ({ ...zero, ...coords });
 

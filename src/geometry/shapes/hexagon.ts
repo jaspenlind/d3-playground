@@ -1,5 +1,6 @@
 import { geoTransform, geoPath } from "d3-geo";
-import { GeoPath, Shape } from "../../types";
+import { Shape } from "../../geometry/types";
+import { GeoPath } from "../../d3/types";
 import { path as p } from "..";
 import { rightDown, rightForward, upForward, leftUp, backwardLeft, backwardDown } from "../direction";
 

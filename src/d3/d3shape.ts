@@ -1,4 +1,5 @@
-import { Direction, D3ShapeData } from "../../types";
+import { D3ShapeData } from "./types";
+import { Direction } from "../geometry/types";
 
 export const d3shape = (direction: Direction): D3ShapeData => {
   /* conversion from hex coordinates to rect

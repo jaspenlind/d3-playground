@@ -1,10 +1,11 @@
 import React, { useEffect, useRef } from "react";
 import * as d3 from "d3";
 import { createStyles, makeStyles } from "@material-ui/core/styles";
-import { D3ShapeData, GeoPath, SVGSelection, SVGTransition, Path, Direction } from "../types";
-import { gosper } from "../geometry/fractals/algorithms";
-import { d3shape, hexagon } from "../geometry/shapes";
-import { translate } from "../geometry/fractals";
+import { D3ShapeData, GeoPath, SVGSelection, SVGTransition } from "../d3/types";
+import { gosper } from "../algorithms";
+import { hexagon } from "../geometry/shapes";
+import { translate } from "../fractals";
+import { d3shape } from "../d3";
 
 const useStyles = makeStyles(() =>
   createStyles({
