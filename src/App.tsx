@@ -8,8 +8,9 @@ import tslogo from "./tslogo.svg";
 import "./App.css";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
-import { Gosper, Staff, Lidenmayer, HexGridLab, HexTileLayout, HexTileGameLayout } from "./components";
-
+import { Gosper, Staff, Lidenmayer, HexGridLab, HexTileLayout, HexTileGameLayout, Grid, Grid2 } from "./components";
+import { NewGrandStaff } from "./components/NewGrandstaff";
+import { StaffWithUse } from "./components/NewGrandstaff/Use";
 const App: React.FC = () => {
   const settings = {
     dots: true,
@@ -25,7 +26,18 @@ const App: React.FC = () => {
         <img src={tslogo} className="ts-logo" alt="ts-logo" />
         <img src={logo} className="App-logo" alt="logo" />
       </header>
-      <Slider {...settings}>
+
+      <NewGrandStaff />
+      {/* <StaffWithUse /> */}
+      {/* <Slider {...settings}>
+        <div>
+          <h2>Grid2</h2>
+          <Grid2 />
+        </div>
+        <div>
+          <h2>Grid</h2>
+          <Grid />
+        </div>
         <div className="game">
           <h2>HexTileLayout</h2>
           <HexGrid width={960} height={500} viewBox="-50 -50 100 100">
@@ -53,7 +65,7 @@ const App: React.FC = () => {
           <h2>TODO</h2>
           <Staff width={960} height={500} />
         </div>
-      </Slider>
+      </Slider> */}
     </div>
   );
 };
