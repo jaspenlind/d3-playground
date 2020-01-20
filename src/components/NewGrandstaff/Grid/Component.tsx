@@ -13,9 +13,9 @@ export const Component = (props: Props) => {
     for (let x = 0; x < width; x += 1) {
       const tile = props.tiles.find(t => t.position.x === x && t.position.y === y);
       tiles.push(
-        <Tile position={{ x, y }} spacing={{ x: 7 }}>
+        <Tile key={`tile-${x}-${y}`} position={{ x, y }} spacing={{ x: 7 }}>
           <GridLines enabled={lines} position={{ x, y }} dimensions={dimensions} />
-          {tile && tile.content}
+          {tile && tile.children}
         </Tile>
       );
     }

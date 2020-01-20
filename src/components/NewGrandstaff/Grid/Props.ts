@@ -4,7 +4,7 @@ import { styles } from ".";
 import { Dimensions, Position } from "../types";
 
 export interface TileDefinition {
-  content?: ReactNode;
+  children?: ReactNode;
   position: Position;
 }
 

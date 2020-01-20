@@ -5,16 +5,16 @@ import { Props } from "./Props";
 export const Component = (props: Props) => {
   const { classes, dimensions, enabled, position } = props;
   const { x, y } = position;
-  const { height } = dimensions;
+  const { height, width } = dimensions;
   const positions: LinePosition[] = [];
-
-  if (enabled) {
+  const show = y > 7 && !(y + 1 === height && x + 1 === width);
+  if (enabled && show) {
     const evenX = x % 2 === 0;
-    positions.push(evenX ? "on" : "above");
+    positions.push(evenX ? "on" : "below");
 
-    if (y + 1 === height) {
-      positions.push("below");
-    }
+    // if (y + 1 === height) {
+    //   positions.push("below");
+    // }
   }
 
   return (

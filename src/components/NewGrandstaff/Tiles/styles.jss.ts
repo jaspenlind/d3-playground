@@ -2,11 +2,14 @@ import { createStyles } from "@material-ui/core/styles";
 
 export const styles = createStyles({
   root: {
-    stroke: "lightgrey",
-    fill: "white",
-    "&:hover": {
+    "&:hover > $chrome": {
+      cursor: "pointer",
       stroke: "#979797"
     }
+  },
+  chrome: {
+    // stroke: "lightgrey",
+    fill: "transparent"
   },
   content: {}
 });

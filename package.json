@@ -43,6 +43,7 @@
     "react-scripts": "3.3.0",
     "react-slick": "^0.25.2",
     "slick-carousel": "^1.8.1",
+    "string-converter": "^1.0.0",
     "typescript": "~3.7.2"
   },
   "scripts": {

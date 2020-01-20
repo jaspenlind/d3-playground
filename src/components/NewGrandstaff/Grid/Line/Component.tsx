@@ -14,7 +14,7 @@ export const Component = (props: Props) => {
 
   return (
     <g transform={`translate(0,${y})`}>
-      <line x1="0" y1="0" x2={dimensions.width} y2="0" stroke-width="1.5" stroke="#000000" stroke-linecap="square" />
+      <line x1="0" y1="0" x2={dimensions.width} y2="0" strokeWidth="1.5" stroke="#000000" strokeLinecap="square" />
     </g>
   );
 };
