@@ -2,15 +2,14 @@ import React from "react";
 import { createPosition } from "../types";
 import { translate } from "../utils/transform";
 import { dimensions, Props } from ".";
-import { Note } from "../Notes";
-import { GridLines } from "../Grid/Lines";
+
 export const Component = (props: Props) => {
   const { classes, children } = props;
   const { height, width } = dimensions;
 
   const position = createPosition(props.position);
   const spacing = createPosition(props.spacing);
-  const evenX = position.x % 2 === 0;
+  const evenX = position.x % 2 !== 0;
 
   const tilePosition = {
     x: (width + spacing.x) * position.x * 0.75,
@@ -29,10 +28,6 @@ export const Component = (props: Props) => {
         </title>
       </path>
       <g className={classes.content}>{children}</g>
-      {/* <use href="#whole" /> */}
-      {/* <GridLines enabled={true} position={tilePosition} dimensions={dimensions} />
-       */}
-      {/* {position.x === 2 && (position.y === 1 || position.y === 2) && <Note value={4} />} */}
     </g>
   );
 

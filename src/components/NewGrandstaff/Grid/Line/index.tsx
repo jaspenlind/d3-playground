@@ -5,4 +5,4 @@ import { styles } from "./styles.jss";
 export * from "./Props";
 export * from "./styles.jss";
 
-export const Line = withStyles(styles)(Component);
+export const GridLine = withStyles(styles)(Component);

@@ -1,9 +1,8 @@
 import { WithStyles } from "@material-ui/core/styles";
 import { styles } from ".";
-import { Dimensions, Position } from "../../types";
+import { NoteValue } from "../types";
 
 export interface Props extends WithStyles<typeof styles> {
-  enabled?: boolean;
-  position: Position;
-  dimensions: Dimensions;
+  values: NoteValue[];
+  transform?: string;
 }

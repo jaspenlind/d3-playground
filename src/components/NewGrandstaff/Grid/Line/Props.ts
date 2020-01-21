@@ -1,8 +1,9 @@
 import { WithStyles } from "@material-ui/core/styles";
 import { styles } from ".";
-
-export type LinePosition = "above" | "on" | "below";
+import { Dimensions, Position } from "../../types";
 
 export interface Props extends WithStyles<typeof styles> {
-  position: LinePosition;
+  enabled?: boolean;
+  position: Position;
+  dimensions: Dimensions;
 }
