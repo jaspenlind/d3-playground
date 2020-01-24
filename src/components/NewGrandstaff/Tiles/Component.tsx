@@ -17,7 +17,7 @@ export const Component = (props: Props) => {
     y: (height + spacing.y) * position.y + (evenX ? height * 0.5 : 0)
   };
 
-  const markup = (
+  return (
     <g className={classes.root} transform={translate(tilePosition)}>
       <path
         className={classes.chrome}
@@ -31,6 +31,4 @@ export const Component = (props: Props) => {
       <g className={classes.content}>{children}</g>
     </g>
   );
-
-  return markup;
 };
