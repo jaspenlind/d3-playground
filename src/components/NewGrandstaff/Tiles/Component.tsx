@@ -9,6 +9,7 @@ export const Component = (props: Props) => {
 
   const position = createPosition(props.position);
   const spacing = createPosition(props.spacing);
+
   const evenX = position.x % 2 !== 0;
 
   const tilePosition = {

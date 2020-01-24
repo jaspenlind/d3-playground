@@ -7,3 +7,5 @@ export interface Props extends WithStyles<typeof styles> {
   position: Position;
   dimensions: Dimensions;
 }
+
+export type LinePosition = "above" | "on" | "below";

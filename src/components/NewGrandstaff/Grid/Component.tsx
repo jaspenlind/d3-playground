@@ -6,7 +6,7 @@ import { Props } from "./Props";
 
 export const Component = (props: Props) => {
   const columns: JSX.Element[] = [];
-  const { classes, dimensions, hiddenColums, transform, lines } = props;
+  const { classes, dimensions, transform, lines } = props;
   const { height, width } = dimensions;
 
   for (let x = 0; x < width; x += 1) {
@@ -21,14 +21,7 @@ export const Component = (props: Props) => {
         </Tile>
       );
     }
-
-    const visibility = hiddenColums && hiddenColums.includes(x) ? "hidden" : "visible";
-
-    columns.push(
-      <g visibility={visibility} className={classes.column}>
-        {tiles}
-      </g>
-    );
+    columns.push(<g className={classes.column}>{tiles}</g>);
   }
 
   return (

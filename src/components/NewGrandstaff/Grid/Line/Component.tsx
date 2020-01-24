@@ -1,12 +1,20 @@
 import React from "react";
-// import { Line } from "../Line";
-import { Props } from "./Props";
+import { LinePosition, Props } from "./Props";
 import { dimensions } from "../../Tiles";
 
-type LinePosition = "above" | "on" | "below";
+const lineStart = 7;
+const lineMiddleC = lineStart + 6;
 
-const Line = (props: { position: LinePosition }) => {
-  const { position } = props;
+export const Component = (props: Props) => {
+  const { classes } = props;
+  const pos = getPosition(props);
+  const enabled = shouldRender(props);
+
+  return <g className={classes.root}>{enabled && <Line className={classes.root} position={pos} />}</g>;
+};
+
+const Line = (props: { className: string; position: LinePosition }) => {
+  const { className, position } = props;
 
   let y = 1;
   if (position === "on") {
@@ -17,19 +25,40 @@ const Line = (props: { position: LinePosition }) => {
 
   return (
     <g transform={`translate(0,${y})`}>
-      <line x1="0" y1="0" x2={dimensions.width} y2="0" strokeWidth="1.5" stroke="#000000" strokeLinecap="square" />
+      <line className={className} x1="0" y1="0" x2={dimensions.width} y2="0" />
     </g>
   );
 };
-export const Component = (props: Props) => {
-  const { classes, dimensions, enabled, position } = props;
-  const { x, y } = position;
-  const { width } = dimensions;
-  const lineStart = 8;
-  const lineMiddleC = lineStart + 6;
 
-  const evenX = x % 2 !== 0;
-  const hasLine =
-    enabled && ((y > lineStart && y < lineMiddleC) || (y === lineStart && evenX) || (y === lineMiddleC && x === width));
-  return <g className={classes.root}>{hasLine && <Line position={evenX ? "on" : "above"} />}</g>;
+const getPosition = (props: Props): LinePosition => {
+  const {
+    position: { x },
+    dimensions: { width }
+  } = props;
+
+  let position: LinePosition = "on";
+
+  const oddX = x % 2 !== 0;
+  const oddWidth = width % 2 !== 0;
+
+  if (oddWidth && !oddX) {
+    position = "below";
+  } else if (!oddWidth && oddX) {
+    position = "above";
+  }
+
+  return position;
+};
+
+const shouldRender = (props: Props) => {
+  const {
+    dimensions: { width },
+    enabled,
+    position: { x, y }
+  } = props;
+
+  const isStaffLine = y > lineStart && y < lineMiddleC;
+  const isMiddleCPosition = y === lineMiddleC && width - 2 === x;
+
+  return enabled && (isStaffLine || isMiddleCPosition);
 };
