@@ -21,6 +21,10 @@ export const G4 = createNote(G, 4);
 
 const fixedNotes = [middleC, F3, G4];
 
+export const natural = (note: PitchedNote): PitchedNote => {
+  return { ...note, ...{ accidential: undefined } };
+};
+
 export const create = (pitch: number, ...notes: Note[]): PitchedNote[] => {
   return notes.map(x => {
     const fixedNote = fixedNotes.find(
@@ -35,5 +39,6 @@ export default {
   middleC,
   F3,
   G4,
-  create
+  create,
+  natural
 };

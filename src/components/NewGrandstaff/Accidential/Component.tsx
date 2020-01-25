@@ -2,10 +2,11 @@ import React from "react";
 import { Props } from ".";
 
 export const Component = (props: Props) => {
-  return <Sharp />;
+  return <Sharp {...props} />;
 };
 
-const Sharp = () => {
+const Sharp = (props: Props) => {
+  const pitch = props.pitch.toString();
   return (
     <g transform="translate(10,-19.5)">
       <path
@@ -14,7 +15,9 @@ const Sharp = () => {
         stroke="#000"
         stroke-width="1"
         fill="#000"
-      />
+      >
+        <title>{pitch}</title>
+      </path>
     </g>
   );
 };
