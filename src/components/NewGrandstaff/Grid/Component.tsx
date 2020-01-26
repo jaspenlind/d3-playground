@@ -1,8 +1,7 @@
 import React from "react";
-import { Tile } from "../Tiles";
+import { Tile } from "../Tile";
 import { GridLine } from "./Line";
-import { Props } from ".";
-import { createPosition } from "../types/Position";
+import { Props, spacing, getTilePosition } from ".";
 
 export const Component = (props: Props) => {
   const columns: JSX.Element[] = [];
@@ -13,11 +12,9 @@ export const Component = (props: Props) => {
 
     for (let y = 0; y < height; y += 1) {
       const tile = props.tiles.find(t => t.position.x === x && t.position.y === y);
-
-      const spacing = (tile && tile.spacing) || createPosition({ x: 7 });
-
+      const position = getTilePosition({ x, y });
       tiles.push(
-        <Tile key={`tile-${x}-${y}`} position={{ x, y }} spacing={spacing}>
+        <Tile key={`tile-${x}-${y}`} coordinate={{ x, y }} position={position}>
           <GridLine enabled={lines} position={{ x, y }} dimensions={dimensions} />
           {tile && tile.children}
         </Tile>

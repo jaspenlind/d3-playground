@@ -1,6 +1,6 @@
 import React from "react";
 import { LinePosition, Props } from "./Props";
-import { dimensions } from "../../Tiles";
+import { dimensions } from "../../Tile";
 
 const lineStart = 7;
 const lineMiddleC = lineStart + 6;

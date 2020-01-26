@@ -14,6 +14,7 @@ export const NewGrandStaff = () => {
     .concat(create(7, Ab, Bb))
     .concat(create(6, Ds))
     .map(p => ({ pitch: p, value: 4 }));
+  // const values = create(5, Cs, Bb)
 
   return (
     <svg width={400} height={600} style={{ marginTop: "100px" }}>

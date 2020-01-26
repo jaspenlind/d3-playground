@@ -1,10 +1,10 @@
 import React from "react";
-import { Props, accidentialPosition } from ".";
+import { Props } from ".";
 import { Accidential } from "../Accidential";
-import { Dimensions, NoteValue, Position } from "../types";
+import { Dimensions, Position } from "../types";
 import { pianoLayout, naturals } from "../../../noteSystem/noteLayouts";
-import { getTilePosition } from "../Tiles";
-import { getNotePosition } from "../Notes";
+import { getTilePosition } from "../Grid";
+import { getNotePosition } from "../Staff";
 import { PitchedNote } from "../../../noteSystem";
 import { translate } from "../utils/transform";
 
@@ -13,14 +13,15 @@ const { treble } = layout;
 const naturalNotes = naturals(treble);
 
 export const Component = (props: Props) => {
-  const { dimensions, notes, spacing } = props;
+  const { dimensions, notes } = props;
   const topToBottom = notes.sort((x, y) => findNaturalIndex(y) - findNaturalIndex(x));
   const accidentials = topToBottom
     .filter(note => note.accidential !== undefined)
     .map(note => {
-      const accidentialPositiion = position(note, notes, dimensions, spacing);
+      const position = getPosition(note, topToBottom, dimensions);
+
       return (
-        <g transform={translate(accidentialPositiion)}>
+        <g transform={translate(position)}>
           <Accidential pitch={note} />
         </g>
       );
@@ -31,14 +32,8 @@ export const Component = (props: Props) => {
 const findNaturalIndex = (value: PitchedNote) =>
   naturalNotes.findIndex(n => n.symbol === value.symbol && n.pitch === value.pitch);
 
-export const position = (
-  note: PitchedNote,
-  allNotes: PitchedNote[],
-  dimensions: Dimensions,
-  gridSpacing?: Position
-): Position => {
+const getPosition = (note: PitchedNote, allNotes: PitchedNote[], dimensions: Dimensions): Position => {
   const notePosition = getNotePosition(note, dimensions);
-  // const tilePosition = getTilePosition(notePosition, gridSpacing);
   const { width } = dimensions;
   const { offset, pushLeft, spacing } = accidentialSettings;
   const startX = notePosition.x === width - 2 ? offset.x : offset.x * 2;
@@ -62,11 +57,10 @@ export const position = (
       break;
     }
   }
-  const pos = { x: x, y: notePosition.y - offset.y };
 
-  return pos;
-  //TODO
-  // return getTilePosition(pos, gridSpacing);
+  const tilePosition = getTilePosition(notePosition);
+
+  return { x: tilePosition.x + x, y: tilePosition.y + offset.y };
 };
 
 const accidentialSettings = {

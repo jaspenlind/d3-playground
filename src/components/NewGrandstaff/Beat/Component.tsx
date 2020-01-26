@@ -1,12 +1,11 @@
 import React from "react";
 import { Props } from ".";
-import { Note, getNotePosition } from "../Notes";
+import { Note } from "../Note";
+import { getNotePosition } from "../Staff";
 import { pianoLayout, naturals } from "../../../noteSystem/noteLayouts";
 import { Grid } from "../Grid";
-import { Accidential } from "../Accidential";
-import { accidentialPosition, AccidentialCluster } from "../AccidentialCluster";
+import { AccidentialCluster } from "../AccidentialCluster";
 import { Dimensions, NoteValue } from "../types";
-import { translate } from "../utils/transform";
 
 const layout = pianoLayout();
 const { treble } = layout;
@@ -20,22 +19,8 @@ export const Component = (props: Props) => {
     .sort((x, y) => findNaturalIndex(y) - findNaturalIndex(x))
     .map(value => {
       const position = getNotePosition(value.pitch, dimensions);
-      const { accidential } = value.pitch;
-      const children: any[] = [<Note key={value.pitch.toString()} {...value} />];
 
-      if (accidential !== undefined) {
-        const accidentialPositiion = accidentialPosition(
-          value.pitch,
-          values.map(x => x.pitch),
-          dimensions
-        );
-
-        children.push(
-          <g transform={translate(accidentialPositiion)}>
-            <Accidential pitch={value.pitch} />
-          </g>
-        );
-      }
+      const children = [<Note key={value.pitch.toString()} {...value} />];
 
       return {
         position,
@@ -46,7 +31,7 @@ export const Component = (props: Props) => {
   return (
     <g>
       <Grid lines={true} dimensions={dimensions} tiles={tiles} transform={props.transform}>
-        {/* <AccidentialCluster notes={values.map(x => x.pitch)} dimensions={dimensions} /> */}
+        <AccidentialCluster notes={values.map(x => x.pitch)} dimensions={dimensions} />
       </Grid>
     </g>
   );

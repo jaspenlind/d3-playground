@@ -1,12 +1,24 @@
 import React from "react";
 import { Props } from ".";
+import { flat, sharp } from "../../../noteSystem/accidentials";
 
 export const Component = (props: Props) => {
-  return <Sharp {...props} />;
+  const { accidential } = props.pitch;
+  const pitch = props.pitch.toString();
+
+  if (accidential === flat) {
+    return <Flat title={pitch} />;
+  }
+
+  if (accidential === sharp) {
+    return <Sharp title={pitch} />;
+  }
+
+  return <></>;
 };
 
-const Sharp = (props: Props) => {
-  const pitch = props.pitch.toString();
+export const Sharp = (props: { title: string }) => {
+  const { title } = props;
   return (
     <g transform="translate(10,-19.5)">
       <path
@@ -16,7 +28,18 @@ const Sharp = (props: Props) => {
         stroke-width="1"
         fill="#000"
       >
-        <title>{pitch}</title>
+        <title>{title}</title>
+      </path>
+    </g>
+  );
+};
+
+export const Flat = (props: { title: string }) => {
+  const { title } = props;
+  return (
+    <g transform="translate(10,-40)">
+      <path d="M2.11133764,0 L2.11133764,27.2043065 C2.1113351,27.2043065 2.1113351,29.0380633 2.11133764,32.7055776 C4.54749199,30.3560845 7.28139851,29.1526935 10.3130694,29.0953539 C12.2078478,29.0953775 13.831951,29.9262967 15.1853853,31.588109 C16.3763854,33.1353654 16.9989505,34.8545181 17.0531043,36.7455637 C17.1072143,38.2355059 16.75534,39.9546332 15.9974369,41.9030194 C15.726739,42.7052806 15.131235,43.5648561 14.2109231,44.4817231 C13.5071309,45.1694023 12.7762828,45.8856913 12.0183805,46.6306619 C8.0122448,49.7251256 4.00612354,52.8482211 0,56 L0,0 L2.11133764,0 M8.68896438,34.5966259 C8.03931433,33.7943637 7.20019318,33.3932331 6.17160215,33.3932331 C4.87231115,33.3932331 3.81664351,34.1668617 3.0045946,35.7140936 C2.40908754,36.9174846 2.11133764,39.7540806 2.11133764,44.2238554 L2.11133764,51.6161966 C2.16547651,51.8453101 3.68130201,50.4414391 6.65883208,47.4042651 C8.28292964,45.7997435 9.33859763,43.9086716 9.82583788,41.7310985 C10.0423671,40.8715239 10.150658,40.0119475 10.150658,39.152372 C10.150658,37.2613001 9.663416,35.7427254 8.68896438,34.5966259">
+        <title>{title}</title>
       </path>
     </g>
   );

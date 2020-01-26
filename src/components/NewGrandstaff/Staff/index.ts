@@ -1,15 +1,15 @@
-import { pianoLayout, naturals } from "../../../../noteSystem/noteLayouts";
-import { middleC } from "../../../../noteSystem/pitchedNotes";
-import { Dimensions, Position } from "../../types";
-import { translate } from "../../utils/transform";
-import { PitchedNote } from "../../../../noteSystem";
+import { pianoLayout, naturals } from "../../../noteSystem/noteLayouts";
+import { middleC } from "../../../noteSystem/pitchedNotes";
+import { Dimensions, Position } from "../types";
+import { translate } from "../utils/transform";
+import { PitchedNote } from "../../../noteSystem";
 
 const layout = pianoLayout();
 const { treble } = layout;
 const naturalNotes = naturals(treble);
 const middleCIndex = naturalNotes.indexOf(middleC);
 
-export const getPosition = (value: PitchedNote, dimensions: Dimensions): Position => {
+export const getNotePosition = (value: PitchedNote, dimensions: Dimensions): Position => {
   const { height, width } = dimensions;
   const noteIndex = findNaturalIndex(value);
   const oddY = noteIndex % 2 !== 0;

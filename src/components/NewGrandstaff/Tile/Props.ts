@@ -4,7 +4,7 @@ import { styles } from ".";
 import { Position } from "../types";
 
 export interface Props extends WithStyles<typeof styles> {
-  position: Partial<Position>;
-  spacing?: Partial<Position>;
+  coordinate: Position;
+  position?: Position;
   children?: ReactNode;
 }

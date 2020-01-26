@@ -1,8 +1,5 @@
 import React from "react";
 import { NoteValue } from "../types";
-import { getPosition } from "./Position";
-
-export const getNotePosition = getPosition;
 
 export const Whole = (props: Props) => {
   return (
