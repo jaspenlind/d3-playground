@@ -6,7 +6,7 @@ import { createPosition } from "../types/Position";
 
 export const Component = (props: Props) => {
   const columns: JSX.Element[] = [];
-  const { classes, dimensions, transform, lines } = props;
+  const { children, classes, dimensions, transform, lines } = props;
   const { height, width } = dimensions;
   for (let x = 0; x < width; x += 1) {
     const tiles: JSX.Element[] = [];
@@ -29,6 +29,7 @@ export const Component = (props: Props) => {
   return (
     <g className={classes.root} transform={transform}>
       {columns}
+      {children}
     </g>
   );
 };

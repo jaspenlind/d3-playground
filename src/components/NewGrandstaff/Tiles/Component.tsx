@@ -1,21 +1,13 @@
 import React from "react";
-import { createPosition } from "../types";
+import { createPosition, Dimensions, Position } from "../types";
 import { translate } from "../utils/transform";
 import { dimensions, Props } from ".";
 
 export const Component = (props: Props) => {
   const { classes, children } = props;
-  const { height, width } = dimensions;
-
   const position = createPosition(props.position);
   const spacing = createPosition(props.spacing);
-
-  const evenX = position.x % 2 !== 0;
-
-  const tilePosition = {
-    x: (width + spacing.x) * position.x * 0.75,
-    y: (height + spacing.y) * position.y + (evenX ? height * 0.5 : 0)
-  };
+  const tilePosition = getPosition(position, spacing);
 
   return (
     <g className={classes.root} transform={translate(tilePosition)}>
@@ -31,4 +23,17 @@ export const Component = (props: Props) => {
       <g className={classes.content}>{children}</g>
     </g>
   );
+};
+
+export const getPosition = (coord: Position, spacings?: Partial<Position>) => {
+  const { height, width } = dimensions;
+
+  const spacing = createPosition(spacings);
+
+  const evenX = coord.x % 2 !== 0;
+
+  return {
+    x: (width + spacing.x) * coord.x * 0.75,
+    y: (height + spacing.y) * coord.y + (evenX ? height * 0.5 : 0)
+  };
 };

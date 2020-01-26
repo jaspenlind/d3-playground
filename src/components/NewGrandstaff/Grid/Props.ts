@@ -14,4 +14,5 @@ export interface Props extends WithStyles<typeof styles> {
   lines?: boolean;
   transform?: string;
   tiles: TileDefinition[];
+  children?: ReactNode;
 }
