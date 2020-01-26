@@ -6,13 +6,15 @@ import { pianoLayout, naturals } from "../../../noteSystem/noteLayouts";
 import { Grid } from "../Grid";
 import { AccidentialCluster } from "../AccidentialCluster";
 import { Dimensions, NoteValue } from "../types";
+import { translate } from "../utils/transform";
 
 const layout = pianoLayout();
 const { treble } = layout;
 const naturalNotes = naturals(treble);
 
 export const Component = (props: Props) => {
-  const { values } = props;
+  const { position } = props;
+  const values = props.values || [];
   const dimensions = getDimensions(values);
 
   const tiles = values
@@ -30,7 +32,7 @@ export const Component = (props: Props) => {
 
   return (
     <g>
-      <Grid lines={true} dimensions={dimensions} tiles={tiles} transform={props.transform}>
+      <Grid lines={true} dimensions={dimensions} tiles={tiles} transform={translate(position)}>
         <AccidentialCluster notes={values.map(x => x.pitch)} dimensions={dimensions} />
       </Grid>
     </g>
@@ -38,7 +40,7 @@ export const Component = (props: Props) => {
 };
 
 const getDimensions = (values: NoteValue[]): Dimensions => {
-  return { width: 9, height: 14 };
+  return { width: 5, height: 14 };
 };
 
 const findNaturalIndex = (value: NoteValue) =>

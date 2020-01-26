@@ -6,6 +6,7 @@ export interface Props extends WithStyles<typeof styles> {
   enabled?: boolean;
   position: Position;
   dimensions: Dimensions;
+  tileHasContent?: boolean;
 }
 
 export type LinePosition = "above" | "on" | "below";

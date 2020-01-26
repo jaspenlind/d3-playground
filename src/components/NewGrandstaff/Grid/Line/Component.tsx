@@ -54,11 +54,12 @@ const shouldRender = (props: Props) => {
   const {
     dimensions: { width },
     enabled,
-    position: { x, y }
+    position: { x, y },
+    tileHasContent
   } = props;
 
   const isStaffLine = y > lineStart && y < lineMiddleC;
   const isMiddleCPosition = y === lineMiddleC && width - 2 === x;
 
-  return enabled && (isStaffLine || isMiddleCPosition);
+  return enabled && (isStaffLine || (isMiddleCPosition && tileHasContent));
 };

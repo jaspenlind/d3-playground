@@ -6,6 +6,7 @@ import { Dimensions, Position } from "../types";
 export interface TileDefinition {
   children?: ReactNode;
   position: Position;
+  selectable?: boolean;
 }
 
 export interface Props extends WithStyles<typeof styles> {

@@ -2,7 +2,7 @@ import { createStyles } from "@material-ui/core/styles";
 
 export const styles = createStyles({
   root: {
-    "&:hover > $chrome": {
+    ".selectable&:hover > $chrome": {
       cursor: "pointer",
       stroke: "#979797"
     }

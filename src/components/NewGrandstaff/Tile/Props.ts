@@ -7,4 +7,5 @@ export interface Props extends WithStyles<typeof styles> {
   coordinate: Position;
   position?: Position;
   children?: ReactNode;
+  selectable?: boolean;
 }

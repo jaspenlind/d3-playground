@@ -1,6 +1,6 @@
 import React from "react";
 import { Beat } from "./Beat";
-
+import { Measure } from "./Measure";
 import notes from "../../noteSystem/notes";
 import { create, middleC } from "../../noteSystem/pitchedNotes";
 
@@ -18,8 +18,9 @@ export const NewGrandStaff = () => {
 
   return (
     <svg width={400} height={600} style={{ marginTop: "100px" }}>
-      <g transform="translate(0, 100)">
-        <Beat values={values} />
+      <g transform="translate(0, 50)">
+        <Measure></Measure>
+        {/* <Beat values={values} /> */}
         />
       </g>
     </svg>
