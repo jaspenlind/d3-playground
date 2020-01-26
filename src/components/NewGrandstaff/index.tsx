@@ -1,26 +1,16 @@
 import React from "react";
-import { Beat } from "./Beat";
 import { Measure } from "./Measure";
-import notes from "../../noteSystem/notes";
-import { create, middleC } from "../../noteSystem/pitchedNotes";
 
 export const NewGrandStaff = () => {
-  const { Bb, C, Cs, D, Ds, E, Eb, F, Fs, G, Gs, A, Ab } = notes;
-  // const values = create(5, Bb, Cs, Ds, Gs)
-  //   .concat(create(4, Eb, Fs))
-  const values = [middleC]
-    .concat(create(4, Ds, Eb, Fs, Gs))
-    .concat(create(5, Bb, Cs, Ds, Eb, Fs, Gs))
-    .concat(create(7, Ab, Bb))
-    .concat(create(6, Ds))
-    .map(p => ({ pitch: p, value: 4 }));
-  // const values = create(5, Cs, Bb)
-
+  const width = 674;
   return (
-    <svg width={400} height={600} style={{ marginTop: "100px" }}>
-      <g transform="translate(0, 50)">
-        <Measure></Measure>
-        {/* <Beat values={values} /> */}
+    <svg width={1800} height={600} style={{ marginTop: "60px;", marginLeft: "7px" }}>
+      <g transform="translate(0, 50) scale(0.3)">
+        <Measure type={"start"} />
+        <Measure />
+        <Measure position={{ x: width }} />
+        <Measure position={{ x: width * 2 }} />
+        <Measure position={{ x: width * 3 }} />
         />
       </g>
     </svg>

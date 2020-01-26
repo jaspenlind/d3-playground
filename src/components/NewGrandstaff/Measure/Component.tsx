@@ -3,6 +3,8 @@ import { translate } from "../utils/transform";
 import { Props } from ".";
 import { Beat } from "../Beat";
 import { BarLine } from "../BarLine";
+import { Grid } from "../Grid";
+import { Clef } from "../Clef";
 import notes from "../../../noteSystem/notes";
 import { create, middleC } from "../../../noteSystem/pitchedNotes";
 
@@ -19,16 +21,27 @@ const beat2Vals = create(5, Ab, Bb)
   .map(p => ({ pitch: p, value: 4 }));
 
 export const Component = (props: Props) => {
-  const { classes, position } = props;
+  const { classes, position, type } = props;
+  const startWidth = 235;
   const width = 168;
+
+  if (type === "start") {
+    return (
+      <g className={classes.root} transform={`${translate(position)}`}>
+        <BarLine />
+        <Grid dimensions={{ width: 7, height: 15 }} lines={true} />
+        <Clef type={"Treble"} position={{ x: 20, y: 154 }} />
+      </g>
+    );
+  }
   return (
-    <g className={classes.root} transform={`${translate(position)} scale(0.5)`}>
-      <BarLine />
-      <Beat values={beat1Vals} />
-      <Beat values={beat2Vals} position={{ x: width }} />
-      <Beat position={{ x: width * 2 }} />
-      <Beat position={{ x: width * 3 }} />
-      <BarLine position={{ x: width * 4 + 1 }} />
+    <g className={classes.root} transform={`${translate(position)}`}>
+      <BarLine position={{ x: startWidth }} />
+      <Beat values={beat1Vals} position={{ x: startWidth }} />
+      <Beat values={beat2Vals} position={{ x: width + startWidth }} />
+      <Beat position={{ x: width * 2 + startWidth }} />
+      <Beat position={{ x: width * 3 + startWidth }} />
+      <BarLine position={{ x: width * 4 + startWidth + 1 }} />
     </g>
   );
 };

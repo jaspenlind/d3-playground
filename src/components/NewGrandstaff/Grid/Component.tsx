@@ -8,11 +8,12 @@ export const Component = (props: Props) => {
   const columns: JSX.Element[] = [];
   const { children, classes, dimensions, transform, lines } = props;
   const { height, width } = dimensions;
+  const tilesWithContent = props.tiles || [];
   for (let x = 0; x < width; x += 1) {
     const tiles: JSX.Element[] = [];
 
     for (let y = 0; y < height; y += 1) {
-      const tile = props.tiles.find(t => t.position.x === x && t.position.y === y) as TileDefinition;
+      const tile = tilesWithContent.find(t => t.position.x === x && t.position.y === y) as TileDefinition;
       const position = getTilePosition({ x, y });
       const selectable = x >= width - 2;
 

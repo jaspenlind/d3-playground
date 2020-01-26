@@ -28,7 +28,7 @@ const App: React.FC = () => {
       </header>
 
       <NewGrandStaff />
-      <StaffWithUse />
+      {/* <StaffWithUse /> */}
       {/* <Slider {...settings}>
         <div>
           <h2>Grid2</h2>

@@ -13,6 +13,6 @@ export interface Props extends WithStyles<typeof styles> {
   dimensions: Dimensions;
   lines?: boolean;
   transform?: string;
-  tiles: TileDefinition[];
+  tiles?: TileDefinition[];
   children?: ReactNode;
 }
