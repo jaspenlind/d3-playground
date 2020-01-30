@@ -10,14 +10,12 @@ import { create, middleC } from "../../../noteSystem/pitchedNotes";
 
 const { Bb, C, Cs, D, Ds, E, Eb, F, Fs, G, Gs, A, Ab } = notes;
 
-const beat1Vals = [middleC]
-
-  .concat(create(5, C, Bb))
-  .concat(create(4, Ds, F))
+const beat1Vals = create(5, Cs, Ds, Eb, Fs)
+  .concat(create(4, C, Gs, Fs, Eb))
   .map(p => ({ pitch: p, value: 4 }));
 
 const beat2Vals = create(5, Ab, Bb)
-  .concat(create(4, E))
+  .concat(create(6, E, Eb))
   .map(p => ({ pitch: p, value: 4 }));
 
 export const Component = (props: Props) => {
@@ -29,7 +27,7 @@ export const Component = (props: Props) => {
     return (
       <g className={classes.root} transform={`${translate(position)}`}>
         <BarLine />
-        <Grid dimensions={{ width: 7, height: 15 }} lines={true} />
+        <Grid dimensions={{ width: 7, height: 14 }} lines={true} />
         <Clef type={"Treble"} position={{ x: 20, y: 154 }} />
       </g>
     );

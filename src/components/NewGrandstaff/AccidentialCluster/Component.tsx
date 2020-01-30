@@ -14,18 +14,19 @@ const naturalNotes = naturals(treble);
 
 export const Component = (props: Props) => {
   const { dimensions, notes } = props;
-  const topToBottom = notes.sort((x, y) => findNaturalIndex(y) - findNaturalIndex(x));
-  const accidentials = topToBottom
-    .filter(note => note.accidential !== undefined)
-    .map(note => {
-      const position = getPosition(note, topToBottom, dimensions);
+  const topToBottom = notes
+    .filter(x => x.accidential !== undefined)
+    .sort((x, y) => findNaturalIndex(y) - findNaturalIndex(x));
 
-      return (
-        <g transform={translate(position)}>
-          <Accidential pitch={note} />
-        </g>
-      );
-    });
+  const accidentials = topToBottom.map(note => {
+    const position = getPosition(note, topToBottom, dimensions);
+
+    return (
+      <g transform={translate(position)}>
+        <Accidential pitch={note} />
+      </g>
+    );
+  });
   return <g>{accidentials}</g>;
 };
 
@@ -66,5 +67,5 @@ const getPosition = (note: PitchedNote, allNotes: PitchedNote[], dimensions: Dim
 const accidentialSettings = {
   offset: { x: -32, y: 10 },
   spacing: 20,
-  pushLeft: { distance: 2, max: 4 }
+  pushLeft: { distance: 2, max: 3 }
 };
